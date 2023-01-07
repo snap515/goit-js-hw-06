@@ -7,5 +7,4 @@ function currentTargetOutputChanger(event) {
   event.currentTarget.value === ""
     ? (nameOutputEl.textContent = "Anonymous")
     : (nameOutputEl.textContent = event.currentTarget.value);
-  console.dir(nameOutputEl.textContent);
 }
