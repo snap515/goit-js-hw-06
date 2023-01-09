@@ -2,38 +2,42 @@ function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
-// const elements = {
-//   input: document.querySelector("input[type='number']"),
-//   createBtn: document.querySelector("button[data-create]"),
-//   destroyBtn: document.querySelector("button[data-destroy]"),
-//   boxesStorage: document.querySelector("#boxes"),
-// };
+const boxesEl = document.querySelector("#boxes");
+const inputNumberEl = document.querySelector("input[type=number]");
+const creatorEl = document.querySelector("[data-create]");
+const destroyerEl = document.querySelector("[data-destroy]");
 
-// console.log(elements.input.value);
+creatorEl.addEventListener("click", boxCreator);
+destroyerEl.addEventListener("click", boxDestroyer);
 
-// elements.createBtn.addEventListener("click", boxesCreator);
-// elements.destroyBtn.addEventListener("click", boxesDestroyer);
+function boxCreator(quantity) {
+  const boxes = [];
+  quantity = inputNumberEl.value;
 
-// function boxesCreator(quantity) {}
+  let width = 30;
+  let height = 30;
+  let adder = 0;
 
-const numberInputEl = document.querySelector("input[type='number']");
-console.log(numberInputEl);
-const createButtonEl = document.querySelector("button[data-create]");
-const destroyButtonEl = document.querySelector("button[data-destroy]");
-const boxesStorageEl = document.querySelector("#boxes");
+  for (let i = 0; i < quantity; i += 1) {
+    const box = document.createElement("div");
+    if (!boxesEl.firstChild) {
+      box.style.width = width + adder + "px";
+      box.style.height = height + adder + "px";
+      adder += 10;
+    } else {
+      adder += 10;
+      box.style.width = parseInt(boxesEl.lastChild.style.width) + adder + "px";
+      box.style.height =
+        parseInt(boxesEl.lastChild.style.height) + adder + "px";
+    }
 
-numberInputEl.addEventListener("input", inputNumbersReader);
-createButtonEl.addEventListener("click", boxesCreator);
+    box.style.backgroundColor = getRandomHexColor();
 
-function inputNumbersReader(event) {
-  console.log(event.currentTarget.valueAsNumber);
-  return event.currentTarget.valueAsNumber;
+    boxes.push(box);
+  }
+  boxesEl.append(...boxes);
 }
 
-function boxesCreator(event) {
-  const box = document.createElement("div");
-  box.style.width = "30px";
-  box.style.height = "30px";
-  box.style.backgroundColor = getRandomHexColor();
-  boxesStorageEl.appendChild(box);
+function boxDestroyer() {
+  boxesEl.innerHTML = "";
 }
