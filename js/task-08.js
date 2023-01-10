@@ -5,18 +5,14 @@ formEl.addEventListener("submit", onSubmitButton);
 function onSubmitButton(event) {
   event.preventDefault();
 
-  const formData = new FormData(event.currentTarget);
+  const email = event.currentTarget.elements.email.value;
+  const password = event.currentTarget.elements.password.value;
+  const formData = { email, password };
 
-  if (
-    event.currentTarget.elements.email.value === "" ||
-    event.currentTarget.elements.password.value === ""
-  ) {
+  if (formData.email === "" || formData.password === "") {
     alert("Заполните все строки");
   } else {
-    formData.forEach((value, name) => {
-      console.log(name, value);
-    });
+    console.log(formData);
   }
-
   event.currentTarget.reset();
 }
