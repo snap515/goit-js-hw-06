@@ -15,14 +15,13 @@ const images = [
 
 const imageListEl = document.querySelector(".gallery");
 
+imageListEl.style.display = "flex";
+imageListEl.style.flexDirection = "column";
+imageListEl.style.listStyle = "none";
+
 images.forEach((image) => {
-  const imageItemEl = document.createElement("li");
-  const imageEl = document.createElement("img");
-
-  imageEl.src = image.url;
-  imageEl.alt = image.alt;
-  imageEl.width = 640;
-
-  imageItemEl.insertAdjacentElement("afterbegin", imageEl);
-  imageListEl.appendChild(imageEl);
+  imageListEl.insertAdjacentHTML(
+    "afterbegin",
+    `<li><img src=${image.url} alt=${image.alt} width = 320px></li>`
+  );
 });
