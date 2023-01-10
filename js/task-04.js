@@ -22,13 +22,17 @@ const decrementButtonEl = document.querySelector('[data-action="decrement"]');
 const incrementButtonel = document.querySelector('[data-action="increment"]');
 const valueEl = document.querySelector("#value");
 
+let counterValue = 0;
+
+incrementButtonel.addEventListener("click", incrementButtonClickHandler);
+decrementButtonEl.addEventListener("click", decrementButtonClickHandler);
+
 function incrementButtonClickHandler(event) {
-  valueEl.textContent = Number(valueEl.textContent) + 1;
+  counterValue = counterValue + 1;
+  valueEl.textContent = counterValue;
 }
 
 function decrementButtonClickHandler(event) {
-  valueEl.textContent = Number(valueEl.textContent) - 1;
+  counterValue = counterValue - 1;
+  valueEl.textContent = counterValue;
 }
-
-decrementButtonEl.addEventListener("click", decrementButtonClickHandler);
-incrementButtonel.addEventListener("click", incrementButtonClickHandler);

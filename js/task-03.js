@@ -19,9 +19,8 @@ imageListEl.style.display = "flex";
 imageListEl.style.flexDirection = "column";
 imageListEl.style.listStyle = "none";
 
-images.forEach((image) => {
-  imageListEl.insertAdjacentHTML(
-    "afterbegin",
-    `<li><img src=${image.url} alt=${image.alt} width = 320px></li>`
-  );
-});
+const createImageElement = images.map(
+  (image) => `<li><img src=${image.url} alt=${image.alt} width = 320px></li>`
+);
+
+imageListEl.insertAdjacentHTML("afterbegin", createImageElement.join(""));
